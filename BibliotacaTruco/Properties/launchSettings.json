@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "BibliotacaTruco": {
+      "commandName": "Project",
+      "nativeDebugging": false,
+      "sqlDebugging": false
+    }
+  }
+}
