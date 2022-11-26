@@ -31,9 +31,9 @@
             this.btnCrearSala = new System.Windows.Forms.Button();
             this.btnHistorial = new System.Windows.Forms.Button();
             this.dtgMenu = new System.Windows.Forms.DataGridView();
-            this.lblSalas = new System.Windows.Forms.Label();
             this.ColumnaIdSala = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnaEstadoSala = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblSalas = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dtgMenu)).BeginInit();
             this.SuspendLayout();
             // 
@@ -70,15 +70,6 @@
             this.dtgMenu.Size = new System.Drawing.Size(300, 369);
             this.dtgMenu.TabIndex = 2;
             // 
-            // lblSalas
-            // 
-            this.lblSalas.AutoSize = true;
-            this.lblSalas.Location = new System.Drawing.Point(408, 36);
-            this.lblSalas.Name = "lblSalas";
-            this.lblSalas.Size = new System.Drawing.Size(101, 20);
-            this.lblSalas.TabIndex = 3;
-            this.lblSalas.Text = "Salas actuales";
-            // 
             // ColumnaIdSala
             // 
             this.ColumnaIdSala.HeaderText = "Idsala";
@@ -95,7 +86,16 @@
             this.ColumnaEstadoSala.ReadOnly = true;
             this.ColumnaEstadoSala.Width = 125;
             // 
-            // Form1
+            // lblSalas
+            // 
+            this.lblSalas.AutoSize = true;
+            this.lblSalas.Location = new System.Drawing.Point(408, 36);
+            this.lblSalas.Name = "lblSalas";
+            this.lblSalas.Size = new System.Drawing.Size(101, 20);
+            this.lblSalas.TabIndex = 3;
+            this.lblSalas.Text = "Salas actuales";
+            // 
+            // FormMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -104,8 +104,9 @@
             this.Controls.Add(this.dtgMenu);
             this.Controls.Add(this.btnHistorial);
             this.Controls.Add(this.btnCrearSala);
-            this.Name = "Form1";
+            this.Name = "FormMenu";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.FormMenu_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dtgMenu)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

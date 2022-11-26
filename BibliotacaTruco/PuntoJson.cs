@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace BibliotecaTruco
 {
@@ -42,7 +43,7 @@ namespace BibliotecaTruco
                 this.Serializar(ruta,contenido);
                 retorno = true;
             }
-            return retorno;
+            return retorno;  
         }
         /// <summary>
         /// Guarda archivo por primera vez
@@ -67,9 +68,13 @@ namespace BibliotecaTruco
         /// <param name="contenido">Conteniudo a serializar y escribir en archivo</param>
         private void Serializar(string ruta, T contenido)
         {
-            using (StreamWriter Writer = new StreamWriter(ruta))//recibe ruta dionde guardo archivo
-            {              
-                string json = JsonSerializer.Serialize(contenido);//invoco metodo estatico para serializar y serializo. Guardo en string
+            JsonSerializerOptions opciones = new JsonSerializerOptions();
+
+            //opciones.WriteIndented = true;
+            using (StreamWriter Writer = new StreamWriter(ruta,true))//recibe ruta dionde guardo archivo para optimizar recursos, true porque indico que se sobreescribira
+            {
+                //string json = JsonSerializer.Serialize(contenido);//invoco metodo estatico para serializar y serializo. Guardo en string
+                string json = JsonSerializer.Serialize(contenido );//invoco metodo estatico para serializar y serializo. Guardo en string
                 Writer.Write(json);//paso contenido a serilizar y lo escribo en archivo
             }
         }

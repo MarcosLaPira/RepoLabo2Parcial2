@@ -38,6 +38,33 @@ namespace BibliotacaTruco
         /// Retorna ganador de la sala tipo int. 1 si el ganador es el jugador1, -1 si el ganadore es el jugador2 y 0 si es empate
         /// </summary>
         public int GanadorDeLaSala { get => ganadorDeLaSala; set => ganadorDeLaSala = value; }
+
+        /// <summary>
+        /// Retorna el nombre de ganador de la sala
+        /// </summary>
+        public string NombreDelGanador
+        {
+            get 
+            {
+                int ganador = this.ganadorDeLaSala;
+                string nombreGanador;
+
+                if (ganador == 1)
+                {
+                    nombreGanador = jugador1.Nombre;
+                }
+                else if (ganador == -1)
+                {
+                    nombreGanador = jugador2.Nombre;
+                }
+                else
+                {
+                    nombreGanador = "Empate";
+                }
+
+                return nombreGanador;
+            }
+        }
         #endregion PROPIEDADES
 
         #region metodos
@@ -72,7 +99,7 @@ namespace BibliotacaTruco
 
             }
               int ganador =  CalcularGanadorDeLaSala(this.jugador1, this.jugador2);
-
+              this.ganadorDeLaSala = ganador;
             return ganador;
         }
         /// <summary>

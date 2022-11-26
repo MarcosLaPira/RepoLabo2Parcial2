@@ -56,6 +56,10 @@ namespace BibliotacaTruco
         /// Geter y seter de las manos actuales ganadas por el jugador
         /// </summary>
         public int ManosActualesGanadas { get => manosActualesGanadas; set => manosActualesGanadas = value; }
+        /// <summary>
+        /// Retorna el nombre del jugador
+        /// </summary>
+        public string Nombre { get => nombre;  }
 
         #endregion PROPIEDADES
 

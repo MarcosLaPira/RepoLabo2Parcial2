@@ -29,9 +29,13 @@ namespace FormTruco
        
         private void FormSala_Load(object sender, EventArgs e)
         {
-            ganadorDeLaSala  = sala.ComenzarPartida();
 
-            lblIdSala.Text = numeroSala.ToString();//seteo id de sala
+            sala.ComenzarPartida();
+            string nombreGandor = sala.NombreDelGanador;
+
+            this.lblIdSala.Text = $"Sala numero {numeroSala.ToString()}";
+            this.lblGanadorSala.Text = $" El ganador de la sala es: {nombreGandor}";
+          
         }
 
         public int GanadorDeLaSala
@@ -39,6 +43,9 @@ namespace FormTruco
             get { return ganadorDeLaSala; }
         }
 
-       
+        private void btnOk_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
+        }
     }
 }
