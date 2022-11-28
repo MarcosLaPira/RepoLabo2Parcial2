@@ -12,10 +12,11 @@ namespace BibliotacaTruco
         private Jugador jugador1;
         private Jugador jugador2;
         private List<Carta> mazo;
+
         private int rondasJugadas = 0;
         private int manosJugadas = 0;
         private int ganadorDeLaSala;
-      
+
         #endregion ATRIBUTOS
 
         #region CONSTRUCTOR     
@@ -25,6 +26,10 @@ namespace BibliotacaTruco
         /// <param name="jugador1"></param>
         /// <param name="jugador2"></param>
         /// <param name="mazo"></param>
+
+        public Sala()
+        { 
+        }
         public Sala(Jugador jugador1, Jugador jugador2, List<Carta> mazo)
         {
             this.jugador1 = jugador1;
@@ -99,7 +104,7 @@ namespace BibliotacaTruco
 
             }
               int ganador =  CalcularGanadorDeLaSala(this.jugador1, this.jugador2);
-              this.ganadorDeLaSala = ganador;
+              this.GanadorDeLaSala = ganador;
             return ganador;
         }
         /// <summary>

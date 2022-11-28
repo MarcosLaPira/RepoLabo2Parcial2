@@ -28,6 +28,9 @@ namespace BibliotacaTruco
         /// <param name="ruta"></param>
         /// <param name="contenido"></param>
         /// <returns></returns>
-        T Leer(string ruta);
+        
+         //T Leer(string ruta);
+
+        List<T> Leer(string ruta);
     }
 }

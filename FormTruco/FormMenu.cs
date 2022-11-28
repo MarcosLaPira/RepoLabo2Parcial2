@@ -10,15 +10,16 @@ namespace FormTruco
         static PuntoJson<string> puntoJson;
         static string path;
 
-        Sala sala;
+        Sala sala1;
 
         static FormMenu()
         {
             semillaSql = new SemillaSql();
             mazo = semillaSql.ObtenerCartasDeLaBase();
 
-            puntoJson = new PuntoJson<string>();         
-           
+            // puntoJson = new PuntoJson<string>();      ////////////   
+            puntoJson = new PuntoJson<string>();
+
             path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);//obtengo ruta
             path += "\\PruebaSala6.json";//le sumo la expresion xml
         }
@@ -35,26 +36,26 @@ namespace FormTruco
             
             Jugador j1 = new Jugador("Jugador 1");
             Jugador j2 = new Jugador("Jugador 2");
-             sala = new Sala(j1,j2,mazo);
+             sala1 = new Sala(j1,j2,mazo);
            
-            FormSala formSala = new FormSala(sala);
+            FormSala formSala = new FormSala(sala1);
 
             this.Hide();
             if (formSala.ShowDialog() == DialogResult.OK)
             {
                 formSala.Hide();
                 this.Show();
-                ActualizarLista();
+                ActualizarLista(sala1);
             }
            
         }
 
-        private void ActualizarLista()
+        private void ActualizarLista(Sala sala)
         {
 
-            string nombreGandor = this.sala.NombreDelGanador;
-            puntoJson.GuardarComo(path, nombreGandor);
-           // puntoJson.GuardarComo(path, sala.ToString());
+            string nombreGandor = this.sala1.NombreDelGanador;
+         //  puntoJson.GuardarComo(path, nombreGandor);//////////
+           puntoJson.GuardarComo(path, sala1.NombreDelGanador);
 
 
             this.dtgMenu.Rows.Add(nombreGandor);
@@ -63,7 +64,14 @@ namespace FormTruco
 
         private void btnHistorial_Click(object sender, EventArgs e)
         {
+            FormHistorial formHistorial = new FormHistorial(path);
 
+            this.Hide();
+            if (formHistorial.ShowDialog() == DialogResult.OK)
+            {
+                formHistorial.Hide();
+                this.Show();
+            }
         }
 
     }

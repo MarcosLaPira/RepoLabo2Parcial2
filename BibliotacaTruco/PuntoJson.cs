@@ -70,34 +70,91 @@ namespace BibliotecaTruco
         {
             JsonSerializerOptions opciones = new JsonSerializerOptions();
 
-            //opciones.WriteIndented = true;
-            using (StreamWriter Writer = new StreamWriter(ruta,true))//recibe ruta dionde guardo archivo para optimizar recursos, true porque indico que se sobreescribira
+             opciones.WriteIndented = true;
+            using (StreamWriter Writer = new StreamWriter(ruta,false))//recibe ruta dionde guardo archivo para optimizar recursos, true porque indico que se sobreescribira
             {
                 //string json = JsonSerializer.Serialize(contenido);//invoco metodo estatico para serializar y serializo. Guardo en string
-                string json = JsonSerializer.Serialize(contenido );//invoco metodo estatico para serializar y serializo. Guardo en string
-                Writer.Write(json);//paso contenido a serilizar y lo escribo en archivo
+                string json = JsonSerializer.Serialize(contenido,opciones ) ;//invoco metodo estatico para serializar y serializo. Guardo en string
+                Writer.WriteLine(json);//paso contenido a serilizar y lo escribo en archivo
             }
         }
+        
         /// <summary>
         /// Lee un archivo serializado
         /// </summary>
         /// <param name="ruta">Ruta la cual se leera</param>
         /// <returns>Retorna el contenido deserializado del archivo</returns>
+        public List<T> Leer(string ruta)
+        {
+            List<T> retorno = new List<T>();
+            try
+            {
+                if (ValidarSiExisteElArchivo(ruta) && ValidarExtencion(ruta))//valido rutas
+                {
+                    using StreamReader streamReader = new StreamReader(ruta);//instancia stream reader 
+                    {
+                        string json = streamReader.ReadToEnd();//leo la ruta hasta el final y la guardo en string json
+
+                        retorno = JsonSerializer.Deserialize<List<T>>(json);//invoco metodo para deserializar, paso el archivo leido
+
+                    }
+
+                }
+            }
+            catch (ArchivoIncorrectoExcepcion e)
+            {
+                throw;
+            }
+            catch (Exception)
+            { 
+                throw;
+            }
+           
+            return retorno;
+        }
+        
+        /*
         public T Leer(string ruta)
         {
+           
+          
             if (ValidarSiExisteElArchivo(ruta) && ValidarExtencion(ruta))//valido rutas
             {
                 using StreamReader streamReader = new StreamReader(ruta);//instancia stream reader 
                 {
                     string json = streamReader.ReadToEnd();//leo la ruta hasta el final y la guardo en string json
-
-                    T contenido = JsonSerializer.Deserialize<T>(json);//invoco metodo para deserializar, paso el archivo leido
+                    T contenido = JsonSerializer.Deserialize<T>(json.ToString());//invoco metodo para deserializar, paso el archivo leido
                     return contenido;
+                  
                 }
 
             }
             return null;
         }
+        */
+        /*
+        public List<T> Leer(string ruta)
+        {
+            T obj;
+            List<T> list = new List<T>();
+            if (ValidarSiExisteElArchivo(ruta) && ValidarExtencion(ruta))//valido rutas
+            {
+                using StreamReader streamReader = new StreamReader(ruta);//instancia stream reader 
+                {
+                    string json;
+                    while ((json = streamReader.ReadLine()) is not null)
+                    {
+                        obj =  JsonSerializer.Deserialize<T>(json) ;//invoco metodo para deserializar, paso el archivo leido
+                        list.Add(obj);
+                    }
+                    return list;
+
+                }
+
+            }
+            return null;
+        }
+        */
         #endregion METODOS
     }
 }
