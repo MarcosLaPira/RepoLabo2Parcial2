@@ -25,16 +25,19 @@ namespace FormTruco
         private void FormHistorial_Load(object sender, EventArgs e)
         {
            
-           List<Sala> sala = new List<Sala>();
+           Sala sala = new Sala();
 
-            sala = puntoJson.Leer(archivo);
-
+            sala = (Sala)puntoJson.Leer(archivo);
+            if (sala is not null)
+            {
+                this.lblCantDePartidasJugadas.Text = sala.NombreDelGanador;
+                
+            }
            
             
             /*
             List<string> ganadoresDeSalas = puntoJson.Leer(archivo);
 
-            this.lblCantDePartidasJugadas.Text = ganadoresDeSalas[0];
 
             */
 

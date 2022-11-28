@@ -78,7 +78,7 @@ namespace BibliotecaTruco
                 Writer.WriteLine(json);//paso contenido a serilizar y lo escribo en archivo
             }
         }
-        
+        /*
         /// <summary>
         /// Lee un archivo serializado
         /// </summary>
@@ -98,7 +98,7 @@ namespace BibliotecaTruco
                         retorno = JsonSerializer.Deserialize<List<T>>(json);//invoco metodo para deserializar, paso el archivo leido
 
                     }
-
+                    
                 }
             }
             catch (ArchivoIncorrectoExcepcion e)
@@ -112,18 +112,16 @@ namespace BibliotecaTruco
            
             return retorno;
         }
+        */
         
-        /*
         public T Leer(string ruta)
-        {
-           
-          
+        {         
             if (ValidarSiExisteElArchivo(ruta) && ValidarExtencion(ruta))//valido rutas
             {
                 using StreamReader streamReader = new StreamReader(ruta);//instancia stream reader 
                 {
                     string json = streamReader.ReadToEnd();//leo la ruta hasta el final y la guardo en string json
-                    T contenido = JsonSerializer.Deserialize<T>(json.ToString());//invoco metodo para deserializar, paso el archivo leido
+                    T contenido = JsonSerializer.Deserialize<T>(json) as T;//invoco metodo para deserializar, paso el archivo leido
                     return contenido;
                   
                 }
@@ -131,7 +129,7 @@ namespace BibliotecaTruco
             }
             return null;
         }
-        */
+        
         /*
         public List<T> Leer(string ruta)
         {

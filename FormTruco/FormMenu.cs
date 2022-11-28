@@ -7,7 +7,7 @@ namespace FormTruco
     {       
         static List<Carta> mazo;
         static SemillaSql semillaSql;
-        static PuntoJson<string> puntoJson;
+        static PuntoJson<Sala> puntoJson;
         static string path;
 
         Sala sala1;
@@ -18,7 +18,7 @@ namespace FormTruco
             mazo = semillaSql.ObtenerCartasDeLaBase();
 
             // puntoJson = new PuntoJson<string>();      ////////////   
-            puntoJson = new PuntoJson<string>();
+            puntoJson = new PuntoJson<Sala>();
 
             path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);//obtengo ruta
             path += "\\PruebaSala6.json";//le sumo la expresion xml
@@ -36,7 +36,7 @@ namespace FormTruco
             
             Jugador j1 = new Jugador("Jugador 1");
             Jugador j2 = new Jugador("Jugador 2");
-             sala1 = new Sala(j1,j2,mazo);
+            sala1 = new Sala(j1,j2,mazo);
            
             FormSala formSala = new FormSala(sala1);
 
@@ -55,7 +55,7 @@ namespace FormTruco
 
             string nombreGandor = this.sala1.NombreDelGanador;
          //  puntoJson.GuardarComo(path, nombreGandor);//////////
-           puntoJson.GuardarComo(path, sala1.NombreDelGanador);
+           puntoJson.GuardarComo(path, sala);
 
 
             this.dtgMenu.Rows.Add(nombreGandor);

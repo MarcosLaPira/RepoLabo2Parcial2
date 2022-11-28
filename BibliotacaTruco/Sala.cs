@@ -15,7 +15,10 @@ namespace BibliotacaTruco
 
         private int rondasJugadas = 0;
         private int manosJugadas = 0;
+
         private int ganadorDeLaSala;
+        private string nombreDelGanador;
+
 
         #endregion ATRIBUTOS
 
@@ -49,25 +52,9 @@ namespace BibliotacaTruco
         /// </summary>
         public string NombreDelGanador
         {
-            get 
+            get
             {
-                int ganador = this.ganadorDeLaSala;
-                string nombreGanador;
-
-                if (ganador == 1)
-                {
-                    nombreGanador = jugador1.Nombre;
-                }
-                else if (ganador == -1)
-                {
-                    nombreGanador = jugador2.Nombre;
-                }
-                else
-                {
-                    nombreGanador = "Empate";
-                }
-
-                return nombreGanador;
+                return this.nombreDelGanador;
             }
         }
         #endregion PROPIEDADES
@@ -104,7 +91,24 @@ namespace BibliotacaTruco
 
             }
               int ganador =  CalcularGanadorDeLaSala(this.jugador1, this.jugador2);
-              this.GanadorDeLaSala = ganador;
+
+            string nombreGanador;
+            if (ganador == 1)
+            {
+                nombreGanador = jugador1.Nombre.ToString();
+            }
+            else if (ganador == -1)
+            {
+                nombreGanador = jugador2.Nombre.ToString();
+            }
+            else
+            {
+                nombreGanador = "Empate";
+            }
+
+            this.nombreDelGanador = nombreGanador;
+            this.ganadorDeLaSala = ganador;
+
             return ganador;
         }
         /// <summary>
