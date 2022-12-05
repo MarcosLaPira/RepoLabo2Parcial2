@@ -50,13 +50,12 @@ namespace BibliotacaTruco
         /// <summary>
         /// Retorna el nombre de ganador de la sala
         /// </summary>
-        public string NombreDelGanador
-        {
-            get
-            {
-                return this.nombreDelGanador;
-            }
-        }
+        public string NombreDelGanador { get => nombreDelGanador; set => nombreDelGanador = value; }
+
+        public int RondasJugadas { get => rondasJugadas; set => rondasJugadas = value; }
+        public Jugador Jugador1 { get => jugador1; set => jugador1 = value; }
+        public Jugador Jugador2 { get => jugador2; set => jugador2 = value; }
+      
         #endregion PROPIEDADES
 
         #region metodos
@@ -82,10 +81,10 @@ namespace BibliotacaTruco
                 {
                     this.ZonaEnvido(this.jugador2, this.jugador1);
                 }
-
                 //zona tirada y truco
                 this.ZonaTirarCartasYTruco();
 
+                //Thread.Sleep(5000);
                 //ronda finalizada
                 this.RondaFinalizada();
 

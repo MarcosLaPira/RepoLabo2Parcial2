@@ -7,10 +7,13 @@ namespace FormTruco
     {       
         static List<Carta> mazo;
         static SemillaSql semillaSql;
-        static PuntoJson<Sala> puntoJson;
+        static List<PuntoJson<Sala>> puntoJsons;
+        static PuntoJson<Sala> misSalas;
         static string path;
 
-        Sala sala1;
+        List<Sala> salas = new List<Sala>();
+
+     
 
         static FormMenu()
         {
@@ -18,7 +21,8 @@ namespace FormTruco
             mazo = semillaSql.ObtenerCartasDeLaBase();
 
             // puntoJson = new PuntoJson<string>();      ////////////   
-            puntoJson = new PuntoJson<Sala>();
+            puntoJsons = new List<PuntoJson<Sala>>();
+            misSalas = new PuntoJson<Sala>();
 
             path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);//obtengo ruta
             path += "\\PruebaSala6.json";//le sumo la expresion xml
@@ -26,6 +30,7 @@ namespace FormTruco
         public FormMenu()
         {
             InitializeComponent();
+
         }
         private void FormMenu_Load(object sender, EventArgs e)
         {
@@ -33,19 +38,22 @@ namespace FormTruco
         }
         private void btnCrearSala_Click(object sender, EventArgs e)
         {
-            
+             Sala sala ;
+
             Jugador j1 = new Jugador("Jugador 1");
             Jugador j2 = new Jugador("Jugador 2");
-            sala1 = new Sala(j1,j2,mazo);
+            sala = new Sala(j1, j2,mazo);
            
-            FormSala formSala = new FormSala(sala1);
+           
+            FormSala formSala = new FormSala(sala);
 
             this.Hide();
             if (formSala.ShowDialog() == DialogResult.OK)
             {
                 formSala.Hide();
                 this.Show();
-                ActualizarLista(sala1);
+                
+                ActualizarLista(sala);
             }
            
         }
@@ -53,18 +61,22 @@ namespace FormTruco
         private void ActualizarLista(Sala sala)
         {
 
-            string nombreGandor = this.sala1.NombreDelGanador;
-         //  puntoJson.GuardarComo(path, nombreGandor);//////////
-           puntoJson.GuardarComo(path, sala);
+            // string nombreGandor = this.sala1.NombreDelGanador;
+            //  puntoJson.GuardarComo(path, nombreGandor);//////////
+            this.salas.Add(sala);
+
+            misSalas.GuardarComo(path, salas);    
+           
 
 
-            this.dtgMenu.Rows.Add(nombreGandor);
+            this.dtgMenu.Rows.Add(sala.NombreDelGanador);
             //this.dtgViajes.Rows.Add(partida, destino, item.FechaInicioViaje.ToShortDateString(), estadoViaje);//
         }
 
         private void btnHistorial_Click(object sender, EventArgs e)
         {
-            FormHistorial formHistorial = new FormHistorial(path);
+            this.salas = misSalas.Leer(path);
+            FormHistorial formHistorial = new FormHistorial(this.salas);
 
             this.Hide();
             if (formHistorial.ShowDialog() == DialogResult.OK)

@@ -13,14 +13,16 @@ namespace BibliotacaTruco
         /// </summary>
         /// <param name="ruta"></param>
         /// <param name="contenido"></param>
-        bool Guardar(string ruta, T contenido);
+       // bool Guardar(string ruta, T contenido);
+       bool Guardar(string ruta, List<T> contenido);
 
         /// <summary>
         /// guardará el contenido en un nuevo archivo, sólamente comprobando que la extensión sea la correcta.
         /// </summary>
         /// <param name="ruta"></param>
         /// <param name="contenido"></param>
-        bool GuardarComo(string ruta, T contenido);
+        //bool GuardarComo(string ruta, T contenido);
+        bool GuardarComo(string ruta, List<T> contenido);
 
         /// <summary>
         /// comprobará que el archivo existe, en cuyo caso retornará su contenido.
@@ -28,9 +30,9 @@ namespace BibliotacaTruco
         /// <param name="ruta"></param>
         /// <param name="contenido"></param>
         /// <returns></returns>
-        
-         T Leer(string ruta);
 
-       // List<T> Leer(string ruta);
+        // T Leer(string ruta);
+
+        List<T> Leer(string ruta);
     }
 }

@@ -13,7 +13,7 @@ namespace BibliotecaTruco
     /// hereda de archivo e implementa la interfaz IArchivo. Es generico
     /// </summary>
     public class PuntoJson<T> : Archivo, IArchivo<T>
-        where T : class//restrinjo el tipo t y que sea de referncia
+        //where T : class//restrinjo el tipo t y que sea de referncia
     {
         #region PROPIEDADES
         /// <summary>
@@ -35,7 +35,7 @@ namespace BibliotecaTruco
         /// <param name="ruta"> ruta del archivo</param>
         /// <param name="contenido"> contenido a serializar</param>
         /// <returns>True fue guardado y false si no fue guardado</returns>
-        public bool Guardar(string ruta, T contenido)
+        public bool Guardar(string ruta, List<T> contenido)
         {
             bool retorno = false;
             if (ValidarSiExisteElArchivo(ruta) && ValidarExtencion(ruta))
@@ -43,7 +43,9 @@ namespace BibliotecaTruco
                 this.Serializar(ruta,contenido);
                 retorno = true;
             }
-            return retorno;  
+
+            return retorno; 
+            
         }
         /// <summary>
         /// Guarda archivo por primera vez
@@ -51,7 +53,7 @@ namespace BibliotecaTruco
         /// <param name="ruta">Ruta donde se guardara el archivo</param>
         /// <param name="contenido">Contenido a guardar</param>
         /// <returns></returns>
-        public bool GuardarComo(string ruta, T contenido)
+        public bool GuardarComo(string ruta, List<T> contenido)
         {
             bool retorno = false;
             if (ValidarExtencion(ruta))//valido que la ruta sea valida
@@ -66,7 +68,7 @@ namespace BibliotecaTruco
         /// </summary>
         /// <param name="ruta">Ruta deonde se escribira el archivo</param>
         /// <param name="contenido">Conteniudo a serializar y escribir en archivo</param>
-        private void Serializar(string ruta, T contenido)
+        private void Serializar(string ruta, List<T> contenido)     
         {
             JsonSerializerOptions opciones = new JsonSerializerOptions();
 
@@ -78,7 +80,7 @@ namespace BibliotecaTruco
                 Writer.WriteLine(json);//paso contenido a serilizar y lo escribo en archivo
             }
         }
-        /*
+        
         /// <summary>
         /// Lee un archivo serializado
         /// </summary>
@@ -112,8 +114,8 @@ namespace BibliotecaTruco
            
             return retorno;
         }
-        */
         
+        /*
         public T Leer(string ruta)
         {         
             if (ValidarSiExisteElArchivo(ruta) && ValidarExtencion(ruta))//valido rutas
@@ -129,9 +131,9 @@ namespace BibliotecaTruco
             }
             return null;
         }
-        
-        /*
-        public List<T> Leer(string ruta)
+        */
+       /*
+        public List<T>  Leer(string ruta)
         {
             T obj;
             List<T> list = new List<T>();
@@ -148,11 +150,10 @@ namespace BibliotecaTruco
                     return list;
 
                 }
-
             }
             return null;
         }
-        */
+      */
         #endregion METODOS
     }
 }

@@ -16,30 +16,17 @@ namespace FormTruco
     {
         PuntoJson<Sala> puntoJson = new PuntoJson<Sala>();////
         static string archivo;
-        public FormHistorial(string path)
+        private List<Sala> historialDeSalas;
+        public FormHistorial(List<Sala> salas)
         {
             InitializeComponent();
-            archivo = path;
+            this.historialDeSalas = salas;
         }
 
         private void FormHistorial_Load(object sender, EventArgs e)
         {
-           
-           Sala sala = new Sala();
-
-            sala = (Sala)puntoJson.Leer(archivo);
-            if (sala is not null)
-            {
-                this.lblCantDePartidasJugadas.Text = sala.NombreDelGanador;
-                
-            }
-           
-            
-            /*
-            List<string> ganadoresDeSalas = puntoJson.Leer(archivo);
-
-
-            */
+          
+                this.lblCantDePartidasJugadas.Text = this.historialDeSalas[0].NombreDelGanador;
 
         }
         private void btnVolver_Click(object sender, EventArgs e)
