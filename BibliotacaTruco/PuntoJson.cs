@@ -73,7 +73,7 @@ namespace BibliotecaTruco
             JsonSerializerOptions opciones = new JsonSerializerOptions();
 
             opciones.WriteIndented = true;
-            using (StreamWriter Writer = new StreamWriter(ruta,true))//recibe ruta dionde guardo archivo para optimizar recursos, true porque indico que se sobreescribira
+            using (StreamWriter Writer = new StreamWriter(ruta,false))//recibe ruta dionde guardo archivo para optimizar recursos, true porque indico que se sobreescribira
             {
                 //string json = JsonSerializer.Serialize(contenido);//invoco metodo estatico para serializar y serializo. Guardo en string
                 string json = JsonSerializer.Serialize(contenido,opciones ) ;//invoco metodo estatico para serializar y serializo. Guardo en string

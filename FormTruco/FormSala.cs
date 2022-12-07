@@ -54,6 +54,7 @@ namespace FormTruco
         private void btnOk_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;
+            this.Hide();
         }
 
         private void rtbInforme_TextChanged(object sender, EventArgs e)
@@ -67,7 +68,7 @@ namespace FormTruco
             if (st is not null)
             {
                 this.infoPartida += $"\n" + st;
-                //Thread.Sleep(3000);///////////////
+                Thread.Sleep(3000);///////////////
                 retor = true;
             }
             return retor;

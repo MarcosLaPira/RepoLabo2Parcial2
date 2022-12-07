@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.lblIdSala = new System.Windows.Forms.Label();
-            this.lblRonda = new System.Windows.Forms.Label();
             this.lblEstadoPartida = new System.Windows.Forms.Label();
             this.lblGanadorSala = new System.Windows.Forms.Label();
             this.btnOk = new System.Windows.Forms.Button();
@@ -44,15 +43,6 @@
             this.lblIdSala.Size = new System.Drawing.Size(76, 20);
             this.lblIdSala.TabIndex = 0;
             this.lblIdSala.Text = "Id de sala:";
-            // 
-            // lblRonda
-            // 
-            this.lblRonda.AutoSize = true;
-            this.lblRonda.Location = new System.Drawing.Point(42, 170);
-            this.lblRonda.Name = "lblRonda";
-            this.lblRonda.Size = new System.Drawing.Size(110, 20);
-            this.lblRonda.TabIndex = 1;
-            this.lblRonda.Text = "Ronda numero:";
             // 
             // lblEstadoPartida
             // 
@@ -101,7 +91,6 @@
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.lblGanadorSala);
             this.Controls.Add(this.lblEstadoPartida);
-            this.Controls.Add(this.lblRonda);
             this.Controls.Add(this.lblIdSala);
             this.Name = "FormSala";
             this.Text = "FormSala";
@@ -114,7 +103,6 @@
         #endregion
 
         private Label lblIdSala;
-        private Label lblRonda;
         private Label lblEstadoPartida;
         private Label lblGanadorSala;
         private Button btnOk;

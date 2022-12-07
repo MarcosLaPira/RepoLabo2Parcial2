@@ -48,14 +48,14 @@ namespace FormTruco
             Jugador j2 = new Jugador("Jugador 2");
             Sala sala = new Sala(j1, j2,mazo);
 
-            //sala.IdSala = CalcularIdSala();
+            sala.IdSala = CalcularIdSala();
 
             FormSala formSala = new FormSala(sala);           
             formSala.Show();
-            if (sala.NombreDelGanador is not null)
-            { 
-              this.ActualizarLista(sala);
-            }
+
+           
+            this.ActualizarLista(sala);
+            
 
         }
 
