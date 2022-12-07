@@ -22,15 +22,13 @@ namespace FormTruco
         private string buffer;
         private int infoRonda;
         public delegate void Delegado();
-
        
         public FormSala(Sala sala)
         {
-            this.sala = sala;
-           
+            this.sala = sala;          
             InitializeComponent();
             this.infoPartida = "Comienza partida";
-            this.sala.notificacion += this.CambioValor;//me comunico con mi sala y le otorgo un metodo
+            this.sala.notificacion += this.CambioValor; //me comunico con mi sala y le otorgo un metodo
         }
         private void FormSala_Load(object sender, EventArgs e)
         {
@@ -69,7 +67,7 @@ namespace FormTruco
             if (st is not null)
             {
                 this.infoPartida += $"\n" + st;
-                Thread.Sleep(3000);
+                //Thread.Sleep(3000);///////////////
                 retor = true;
             }
             return retor;

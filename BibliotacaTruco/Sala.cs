@@ -34,8 +34,10 @@ namespace BibliotacaTruco
         /// <param name="jugador2"></param>
         /// <param name="mazo"></param>
 
-       
-       
+
+        public Sala()
+        { 
+        }
         public Sala(Jugador jugador1, Jugador jugador2, List<Carta> mazo)
         {
             this.jugador1 = jugador1;
@@ -125,8 +127,8 @@ namespace BibliotacaTruco
                 nombreGanador = "Empate";
             }
 
-            this.nombreDelGanador = nombreGanador;
-            this.ganadorDeLaSala = ganador;
+            this.NombreDelGanador = nombreGanador;
+            this.GanadorDeLaSala = ganador;
 
            // return ganador;
         }
@@ -416,7 +418,7 @@ namespace BibliotacaTruco
             {
                 retorno = 0;
             }
-            ganadorDeLaSala = retorno;
+           
             return retorno;
         }
         /// <summary>

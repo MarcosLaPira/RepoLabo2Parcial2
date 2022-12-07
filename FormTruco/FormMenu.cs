@@ -14,6 +14,7 @@ namespace FormTruco
 
         private List<Sala> salas = new List<Sala>();
 
+       
         private static int ultimoIdDeSala;
 
         static FormMenu()
@@ -38,7 +39,7 @@ namespace FormTruco
         }
         private void FormMenu_Load(object sender, EventArgs e)
         {
-            this.CargarArchivoPrimeraVez();
+            //this.CargarArchivoPrimeraVez();
         }
         private void btnCrearSala_Click(object sender, EventArgs e)
         {
@@ -46,13 +47,15 @@ namespace FormTruco
             Jugador j1 = new Jugador("Jugador 1");
             Jugador j2 = new Jugador("Jugador 2");
             Sala sala = new Sala(j1, j2,mazo);
-            sala.IdSala = this.CalcularIdSala();
 
+            //sala.IdSala = CalcularIdSala();
 
             FormSala formSala = new FormSala(sala);           
             formSala.Show();
-
-            this.ActualizarLista(sala);
+            if (sala.NombreDelGanador is not null)
+            { 
+              this.ActualizarLista(sala);
+            }
 
         }
 
@@ -68,15 +71,22 @@ namespace FormTruco
 
         private void btnHistorial_Click(object sender, EventArgs e)
         {
-            this.salas = FormMenu.misSalas.Leer(FormMenu.path);
-            FormHistorial formHistorial = new FormHistorial(this.salas);
-
-            this.Hide();
-            if (formHistorial.ShowDialog() == DialogResult.OK)
+            try
             {
-                formHistorial.Hide();
-                this.Show();
+                this.salas = FormMenu.misSalas.Leer(FormMenu.path);
+                FormHistorial formHistorial = new FormHistorial(this.salas);
+
+                this.Hide();
+                if (formHistorial.ShowDialog() == DialogResult.OK)
+                {
+                    formHistorial.Hide();
+                    this.Show();
+                }
             }
+            catch (Exception)
+            { 
+            }
+            
         }
 
        /// <summary>
@@ -90,15 +100,29 @@ namespace FormTruco
             }
             catch (Exception)
             {
-                throw;
+                //throw;
             }
              
         }
+        /// <summary>
+        /// calcula cual es el siguiente id de la sala a travez de la ultima sala guardada en archivo
+        /// </summary>
+        /// <returns></returns>
         private int CalcularIdSala()
         {
             int bufferInt = this.salas.Count;
+            List<Sala> bufferLista = misSalas.Leer(FormMenu.path);
 
-            return  bufferInt + 1 ;
+            if (bufferLista is not null)
+            {
+                FormMenu.ultimoIdDeSala = bufferLista.Count;
+            }
+            else
+            {
+                FormMenu.ultimoIdDeSala = 0;
+            }
+
+            return FormMenu.ultimoIdDeSala + 1;
         }
 
     }

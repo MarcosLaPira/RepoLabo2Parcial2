@@ -38,6 +38,9 @@ namespace FormTruco
             this.lblVictoriasDejugador1.Text = $" Victorias jugador1: {this.partidasGanadasPorJugador1.ToString()}";
             this.lblVictoriasDeJugador2.Text = $" Victorias jugador2: {this.partidasGanadasPorJugador2.ToString()}";
             this.lblPartidasEmpatadas.Text =$"Empates : {this.partidasEmpatadas.ToString()}" ;
+
+            this.ActualizarDtg();
+
         }
         private void btnVolver_Click(object sender, EventArgs e)
         {
@@ -65,6 +68,14 @@ namespace FormTruco
                 }
             }
                    
+        }
+
+        private void ActualizarDtg()
+        {
+            foreach (Sala item in historialDeSalas)
+            {
+                this.dataGridView.Rows.Add(item.IdSala.ToString(),item.NombreDelGanador.ToString());
+            }
         }
         #endregion METODOS
 

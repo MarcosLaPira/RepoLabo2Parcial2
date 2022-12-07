@@ -58,11 +58,11 @@
             // 
             this.lblEstadoPartida.AutoSize = true;
             this.lblEstadoPartida.Font = new System.Drawing.Font("Showcard Gothic", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblEstadoPartida.Location = new System.Drawing.Point(255, 30);
+            this.lblEstadoPartida.Location = new System.Drawing.Point(387, 29);
             this.lblEstadoPartida.Name = "lblEstadoPartida";
-            this.lblEstadoPartida.Size = new System.Drawing.Size(290, 35);
+            this.lblEstadoPartida.Size = new System.Drawing.Size(273, 35);
             this.lblEstadoPartida.TabIndex = 2;
-            this.lblEstadoPartida.Text = "Estado de partida";
+            this.lblEstadoPartida.Text = "Partida en curso";
             // 
             // lblGanadorSala
             // 
@@ -85,7 +85,7 @@
             // 
             // rtbInforme
             // 
-            this.rtbInforme.Location = new System.Drawing.Point(207, 82);
+            this.rtbInforme.Location = new System.Drawing.Point(329, 85);
             this.rtbInforme.Name = "rtbInforme";
             this.rtbInforme.Size = new System.Drawing.Size(410, 311);
             this.rtbInforme.TabIndex = 5;

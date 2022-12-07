@@ -73,7 +73,7 @@ namespace BibliotecaTruco
             JsonSerializerOptions opciones = new JsonSerializerOptions();
 
             opciones.WriteIndented = true;
-            using (StreamWriter Writer = new StreamWriter(ruta,false))//recibe ruta dionde guardo archivo para optimizar recursos, true porque indico que se sobreescribira
+            using (StreamWriter Writer = new StreamWriter(ruta,true))//recibe ruta dionde guardo archivo para optimizar recursos, true porque indico que se sobreescribira
             {
                 //string json = JsonSerializer.Serialize(contenido);//invoco metodo estatico para serializar y serializo. Guardo en string
                 string json = JsonSerializer.Serialize(contenido,opciones ) ;//invoco metodo estatico para serializar y serializo. Guardo en string
@@ -86,7 +86,7 @@ namespace BibliotecaTruco
         /// </summary>
         /// <param name="ruta">Ruta la cual se leera</param>
         /// <returns>Retorna el contenido deserializado del archivo</returns>
-        public List<T>? Leer(string ruta)
+        public List<T> Leer(string ruta)
         {
             List<T> retorno = new List<T>();
             try
@@ -96,12 +96,9 @@ namespace BibliotecaTruco
                     using StreamReader streamReader = new StreamReader(ruta);//instancia stream reader 
                     {
                         string json = streamReader.ReadToEnd();//leo la ruta hasta el final y la guardo en string json
-                        if (json != null)
-                        {
-                            retorno = JsonSerializer.Deserialize<List<T>>(json);//invoco metodo para deserializar, paso el archivo leido
-                        }
-                       
-
+                                            
+                        retorno = JsonSerializer.Deserialize<List<T>>(json);//invoco metodo para deserializar, paso el archivo leido
+                                              
                     }
                     
                 }

@@ -30,13 +30,13 @@
         {
             this.lblCantDePartidasJugadas = new System.Windows.Forms.Label();
             this.lblVictoriasDejugador1 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridView = new System.Windows.Forms.DataGridView();
             this.ColumnaIdPartida = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnaGanador = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblVictoriasDeJugador2 = new System.Windows.Forms.Label();
             this.btnVolver = new System.Windows.Forms.Button();
             this.lblPartidasEmpatadas = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // lblCantDePartidasJugadas
@@ -57,18 +57,18 @@
             this.lblVictoriasDejugador1.TabIndex = 1;
             this.lblVictoriasDejugador1.Text = "Victorias de jugador 1:";
             // 
-            // dataGridView1
+            // dataGridView
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColumnaIdPartida,
             this.ColumnaGanador});
-            this.dataGridView1.Location = new System.Drawing.Point(331, 65);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 29;
-            this.dataGridView1.Size = new System.Drawing.Size(300, 373);
-            this.dataGridView1.TabIndex = 2;
+            this.dataGridView.Location = new System.Drawing.Point(331, 65);
+            this.dataGridView.Name = "dataGridView";
+            this.dataGridView.RowHeadersWidth = 51;
+            this.dataGridView.RowTemplate.Height = 29;
+            this.dataGridView.Size = new System.Drawing.Size(300, 373);
+            this.dataGridView.TabIndex = 2;
             // 
             // ColumnaIdPartida
             // 
@@ -108,7 +108,7 @@
             // lblPartidasEmpatadas
             // 
             this.lblPartidasEmpatadas.AutoSize = true;
-            this.lblPartidasEmpatadas.Location = new System.Drawing.Point(54, 311);
+            this.lblPartidasEmpatadas.Location = new System.Drawing.Point(44, 315);
             this.lblPartidasEmpatadas.Name = "lblPartidasEmpatadas";
             this.lblPartidasEmpatadas.Size = new System.Drawing.Size(154, 20);
             this.lblPartidasEmpatadas.TabIndex = 5;
@@ -122,13 +122,13 @@
             this.Controls.Add(this.lblPartidasEmpatadas);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.lblVictoriasDeJugador2);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dataGridView);
             this.Controls.Add(this.lblVictoriasDejugador1);
             this.Controls.Add(this.lblCantDePartidasJugadas);
             this.Name = "FormHistorial";
             this.Text = "FormHistorial";
             this.Load += new System.EventHandler(this.FormHistorial_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -138,7 +138,7 @@
 
         private Label lblCantDePartidasJugadas;
         private Label lblVictoriasDejugador1;
-        private DataGridView dataGridView1;
+        private DataGridView dataGridView;
         private Label lblVictoriasDeJugador2;
         private DataGridViewTextBoxColumn ColumnaIdPartida;
         private DataGridViewTextBoxColumn ColumnaGanador;
