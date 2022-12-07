@@ -14,6 +14,9 @@ Mi aplicacion:
   de cada jugador(ficticio) en tiempo real. Tambien el usuario podra acceder a un historial de encuentros en el que vera un resumen detallado con 
   informacion de partidas anteriores.
   
+  ![image](https://user-images.githubusercontent.com/98835758/206157422-6c1507d0-3232-45ac-a33a-832e51e4f575.png)
+
+  
   Temas aplicados y su justificacion:
   
   Sql: aplique Sql, en la clase SemillaSql y Sql. Aqui lo que hago es una relacion entre la base de datos y mi programa. Mi clase sql, será la relació directa entre 
