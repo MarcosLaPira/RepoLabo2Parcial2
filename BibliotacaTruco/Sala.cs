@@ -19,6 +19,10 @@ namespace BibliotacaTruco
         private int ganadorDeLaSala;
         private string nombreDelGanador;
 
+        public delegate bool NotificacionAccion(string mensaje);//creo delegado que retorna bool y recibe string //creo mi propio delegado
+        public  NotificacionAccion notificacion;//creo el atributo
+
+        static int idSala =0;
 
         #endregion ATRIBUTOS
 
@@ -30,9 +34,8 @@ namespace BibliotacaTruco
         /// <param name="jugador2"></param>
         /// <param name="mazo"></param>
 
-        public Sala()
-        { 
-        }
+       
+       
         public Sala(Jugador jugador1, Jugador jugador2, List<Carta> mazo)
         {
             this.jugador1 = jugador1;
@@ -51,11 +54,23 @@ namespace BibliotacaTruco
         /// Retorna el nombre de ganador de la sala
         /// </summary>
         public string NombreDelGanador { get => nombreDelGanador; set => nombreDelGanador = value; }
-
+        /// <summary>
+        /// Seter y geter de rondas jugadas
+        /// </summary>
         public int RondasJugadas { get => rondasJugadas; set => rondasJugadas = value; }
+        /// <summary>
+        /// seter y geter de jugador 1
+        /// </summary>
         public Jugador Jugador1 { get => jugador1; set => jugador1 = value; }
+        /// <summary>
+        /// seter y geter de jugador 2
+        /// </summary>
         public Jugador Jugador2 { get => jugador2; set => jugador2 = value; }
-      
+        /// <summary>
+        /// seter y geter de id de sala
+        /// </summary>
+        public int IdSala { get => idSala; set => idSala = value; }
+
         #endregion PROPIEDADES
 
         #region metodos
@@ -63,7 +78,7 @@ namespace BibliotacaTruco
         /// controlador de la partida, se jugaran 4 rondas e ira invocando las diferentes instancias de una ronda
         /// </summary>
         /// <returns>jugador ganador, con mayor puntaje. Retorna 1 ganador jugador1, -1 ganador jugador2 y 0 empate</returns>
-        public int ComenzarPartida()
+        public void ComenzarPartida()
         {
             
             //se jugaran 4 rondas
@@ -71,6 +86,7 @@ namespace BibliotacaTruco
             {
 
                 this.RepartirCartas();
+              //  notificacion("se han repartido las cartas");
 
                 //zona envido
                 if (this.rondasJugadas % 2 == 0)
@@ -89,26 +105,30 @@ namespace BibliotacaTruco
                 this.RondaFinalizada();
 
             }
-              int ganador =  CalcularGanadorDeLaSala(this.jugador1, this.jugador2);
+            this.notificacion($"-Partida finalizada");///////////
+            int ganador =  this.CalcularGanadorDeLaSala(this.jugador1, this.jugador2);
 
             string nombreGanador;
             if (ganador == 1)
             {
-                nombreGanador = jugador1.Nombre.ToString();
+                this.notificacion($"-{this.jugador1.Nombre} gano sala");///////////
+                nombreGanador = this.jugador1.Nombre.ToString();
             }
             else if (ganador == -1)
             {
-                nombreGanador = jugador2.Nombre.ToString();
+                this.notificacion($"-{this.jugador2.Nombre} gano sala");
+                nombreGanador = this.jugador2.Nombre.ToString();
             }
             else
             {
+                this.notificacion($"-Sala empatada");
                 nombreGanador = "Empate";
             }
 
             this.nombreDelGanador = nombreGanador;
             this.ganadorDeLaSala = ganador;
 
-            return ganador;
+           // return ganador;
         }
         /// <summary>
         /// copia el mazo y le setea 3 cartas random a cada jugador
@@ -125,11 +145,11 @@ namespace BibliotacaTruco
 
                 if (i < 3)
                 {
-                    jugador1.AgregarCarta(bufferMazo[indiceCarta]);
+                    this.jugador1.AgregarCarta(bufferMazo[indiceCarta]);
                 }
                 else
                 {
-                    jugador2.AgregarCarta(bufferMazo[indiceCarta]);
+                    this.jugador2.AgregarCarta(bufferMazo[indiceCarta]);
                 }
                 bufferMazo.Remove(bufferMazo[indiceCarta]);
             }
@@ -140,24 +160,34 @@ namespace BibliotacaTruco
         /// </summary>
         private void ZonaEnvido(Jugador jugadorMano, Jugador jugadorNoMano)
         {
+           
             bool envido = jugadorMano.CantarEnvido();//retorna booo al azar si quiere cantar envido
+
             if (envido)
             {
+                this.notificacion($"-{jugadorMano.Nombre} canta envido");//aca se esta ejecutando cambio valor de FormSala
+               
                 bool rtaEnvido = jugadorNoMano.ContestarEnvido();
                 if (rtaEnvido)//si jugador 2 quiere envido
                 {
+                    this.notificacion($"-{jugadorNoMano.Nombre} quiere envido ");
+
                     int ganadorEnvido = Mano.GanadorEnvido(jugadorMano, jugadorNoMano);//verifico quien gano envido
+
                     if (ganadorEnvido == 1)//caso de que gano el jugador1
                     {
+                        this.notificacion($"-{jugadorMano.Nombre} gano envido ");
                         setearPuntaje(jugadorMano, 2);
                     }
                     else if (ganadorEnvido == -1)//caso de que gano el jugador2
                     {
+                        this.notificacion($"-{jugadorNoMano.Nombre} gano envido ");
                         setearPuntaje(jugadorNoMano, 2);
                     }
                 }
                 else//caso de que no quiera envido jugador no mano
                 {
+                    this.notificacion($"-{jugadorNoMano.Nombre} no quiere envido");
                     setearPuntaje(jugadorMano, 1);
                 }
             }
@@ -182,7 +212,10 @@ namespace BibliotacaTruco
         private int TirarCartas(Jugador jugMano, Jugador jugNoMano)
         {               
             Carta cartaMano = jugMano.SeleccionarCartaAlAzar();
+            this.notificacion($"-{jugMano.Nombre} tira {cartaMano.ToString()}");///////////
+
             Carta cartaNoMano = jugNoMano.SeleccionarCartaAlAzar();
+            this.notificacion($"-{jugNoMano.Nombre} tira {cartaNoMano.ToString()}");///////////
 
             int ganadorMano = Mano.GanadorDeTirada(cartaMano, cartaNoMano);
                                    
@@ -201,13 +234,17 @@ namespace BibliotacaTruco
             bool truco = jugMano.CantarTruco();//retorna booo al azar si quiere cantar envido
             if (truco)
             {
+                this.notificacion($"-{jugMano.Nombre} canta truco ");
                 bool rtaTruco = jugNoMano.ContestarTruco();
+
                 if (rtaTruco)//si jugador 2 quiere envido
                 {
+                    this.notificacion($"-{jugNoMano.Nombre} quiere truco ");
                     retorno = 1;
                 }
                 else
                 {
+                    this.notificacion($"-{jugNoMano.Nombre} no quiere truco ");
                     retorno = -1;
                 }
             }
@@ -218,6 +255,7 @@ namespace BibliotacaTruco
         /// </summary>
         private void ZonaTirarCartasYTruco()
         {
+            this.notificacion($"-Se va a jugar truco ");//aca se esta ejecutando cambio valor de FormSala
             //juego primer ronda 
             bool flagJug1Mano = false;//determina quien es la mano
             bool flagTruco = false;//para que no lo canten mas de una vez
@@ -234,14 +272,14 @@ namespace BibliotacaTruco
             }
 
             /////////
-            while ( this.manosJugadas < 3 && jugador1.ManosActualesGanadas < 2 && jugador2.ManosActualesGanadas < 2 )//juego las 3 rondas
+            while ( this.manosJugadas < 3 && this.jugador1.ManosActualesGanadas < 2 && this.jugador2.ManosActualesGanadas < 2 )//juego las 3 rondas
             {
                 this.manosJugadas++;
                 if (flagJug1Mano)//comienza el jugador 1
                 {
                     if (!flagTruco)//flag truco en false
                     {
-                        respuestaTruco = ZonaTruco(jugador1, jugador2);//se tiene un retorno del truco
+                        respuestaTruco = this.ZonaTruco(jugador1, jugador2);//se tiene un retorno del truco
 
                         if (respuestaTruco == 1)//truco aceptado
                         {
@@ -256,16 +294,23 @@ namespace BibliotacaTruco
                         }
                     }
                  
-                    resultado = TirarCartas(jugador1, jugador2);
+                    resultado = this.TirarCartas(this.jugador1, this.jugador2);
+
                     if (resultado == 1)
                     {
-                        jugador1.ManosActualesGanadas++;
+                        this.notificacion($"-{this.jugador1.Nombre} gano mano");///////////
+                        this.jugador1.ManosActualesGanadas++;
                         flagJug1Mano = true;//significa que volvera a ser mano
                     }
                     else if (resultado == -1)
                     {
-                        jugador2.ManosActualesGanadas++;
+                        this.notificacion($"-{this.jugador2.Nombre} gano mano");///////////
+                        this.jugador2.ManosActualesGanadas++;
                         flagJug1Mano = false;//significa que hay un cambio de mano
+                    }
+                    else
+                    {
+                        this.notificacion($"-Mano empatada");///////////
                     }
                                                         
                 }
@@ -273,7 +318,7 @@ namespace BibliotacaTruco
                 {
                     if (!flagTruco)
                     {
-                        respuestaTruco = ZonaTruco(jugador2, jugador1);
+                        respuestaTruco = this.ZonaTruco(this.jugador2, this.jugador1);
 
                         if (respuestaTruco == 1)//truco aceptado
                         {
@@ -288,19 +333,23 @@ namespace BibliotacaTruco
                         }
                     }
 
-                    resultado = TirarCartas(jugador2, jugador1);
+                    resultado = this.TirarCartas(jugador2, jugador1);
                     if (resultado == 1)
                     {
-                        jugador2.ManosActualesGanadas++;
+                        this.notificacion($"-{this.jugador2.Nombre} gano mano");///////////
+                        this.jugador2.ManosActualesGanadas++;
                         flagJug1Mano = true;//significa que volvera a tirar carta la mano
                     }
                     else if (resultado == -1)
                     {
-                        jugador1.ManosActualesGanadas++;
-
+                        this.notificacion($"-{this.jugador1.Nombre} gano mano");///////////
+                        this.jugador1.ManosActualesGanadas++;
                         flagJug1Mano = false;//significa que hay un cambio de mano
                     }
-
+                    else
+                    {
+                        this.notificacion($"- Mano empatada");///////////
+                    }
                 }
             }
             if (!flagTrucoRechazado)
@@ -317,28 +366,30 @@ namespace BibliotacaTruco
         /// <param name="puntosASetear"></param>
         private void SetearPuntajesDeLaRonda(bool flagTruco,int puntosASetear)
         {
-            if (jugador1.ManosActualesGanadas > jugador2.ManosActualesGanadas)
+            this.notificacion($"-Ronda {this.rondasJugadas} terminada");///////////
+            if (this.jugador1.ManosActualesGanadas > this.jugador2.ManosActualesGanadas)
             {
+
                 if (flagTruco)//si el truco fue querido
                 {
-                    this.setearPuntaje(jugador1, puntosASetear);//seteo 2 puntos
+                    this.setearPuntaje(this.jugador1, puntosASetear);//seteo 2 puntos
 
                 }
                 else
                 {
-                    this.setearPuntaje(jugador1, puntosASetear);//seteo 1
+                    this.setearPuntaje(this.jugador1, puntosASetear);//seteo 1
                 }
             }
             else
             {
                 if (flagTruco)
                 {
-                    this.setearPuntaje(jugador2, puntosASetear);
+                    this.setearPuntaje(this.jugador2, puntosASetear);
 
                 }
                 else
                 {
-                    this.setearPuntaje(jugador2, puntosASetear);
+                    this.setearPuntaje(this.jugador2, puntosASetear);
                 }
             }
         }

@@ -1,5 +1,6 @@
 using BibliotacaTruco;
 using BibliotecaTruco;
+using System.Runtime.CompilerServices;
 
 namespace FormTruco
 {
@@ -11,21 +12,24 @@ namespace FormTruco
         static PuntoJson<Sala> misSalas;
         static string path;
 
-        List<Sala> salas = new List<Sala>();
+        private List<Sala> salas = new List<Sala>();
 
-     
+        private static int ultimoIdDeSala;
 
         static FormMenu()
         {
-            semillaSql = new SemillaSql();
-            mazo = semillaSql.ObtenerCartasDeLaBase();
+            FormMenu.semillaSql = new SemillaSql();
+            FormMenu.mazo = semillaSql.ObtenerCartasDeLaBase();
 
             // puntoJson = new PuntoJson<string>();      ////////////   
-            puntoJsons = new List<PuntoJson<Sala>>();
-            misSalas = new PuntoJson<Sala>();
+            FormMenu.puntoJsons = new List<PuntoJson<Sala>>();
+            FormMenu.misSalas = new PuntoJson<Sala>();
 
-            path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);//obtengo ruta
-            path += "\\PruebaSala6.json";//le sumo la expresion xml
+            FormMenu.path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);//obtengo ruta
+            FormMenu.path += "\\PruebaSala6.json";//le sumo la expresion json
+
+           // ultimoIdDeSala = EncontrarUltimoIdDeSala();
+
         }
         public FormMenu()
         {
@@ -34,48 +38,37 @@ namespace FormTruco
         }
         private void FormMenu_Load(object sender, EventArgs e)
         {
-           // ActualizarLista();
+            this.CargarArchivoPrimeraVez();
         }
         private void btnCrearSala_Click(object sender, EventArgs e)
         {
-             Sala sala ;
-
+           
             Jugador j1 = new Jugador("Jugador 1");
             Jugador j2 = new Jugador("Jugador 2");
-            sala = new Sala(j1, j2,mazo);
-           
-           
-            FormSala formSala = new FormSala(sala);
+            Sala sala = new Sala(j1, j2,mazo);
+            sala.IdSala = this.CalcularIdSala();
 
-            this.Hide();
-            if (formSala.ShowDialog() == DialogResult.OK)
-            {
-                formSala.Hide();
-                this.Show();
-                
-                ActualizarLista(sala);
-            }
-           
+
+            FormSala formSala = new FormSala(sala);           
+            formSala.Show();
+
+            this.ActualizarLista(sala);
+
         }
 
         private void ActualizarLista(Sala sala)
-        {
-
-            // string nombreGandor = this.sala1.NombreDelGanador;
-            //  puntoJson.GuardarComo(path, nombreGandor);//////////
+        {         
             this.salas.Add(sala);
 
-            misSalas.GuardarComo(path, salas);    
+            FormMenu.misSalas.GuardarComo(path,this.salas);    
            
-
-
-            this.dtgMenu.Rows.Add(sala.NombreDelGanador);
+            //this.dtgMenu.Rows.Add(sala.IdSala.ToString(),sala.);
             //this.dtgViajes.Rows.Add(partida, destino, item.FechaInicioViaje.ToShortDateString(), estadoViaje);//
         }
 
         private void btnHistorial_Click(object sender, EventArgs e)
         {
-            this.salas = misSalas.Leer(path);
+            this.salas = FormMenu.misSalas.Leer(FormMenu.path);
             FormHistorial formHistorial = new FormHistorial(this.salas);
 
             this.Hide();
@@ -84,6 +77,28 @@ namespace FormTruco
                 formHistorial.Hide();
                 this.Show();
             }
+        }
+
+       /// <summary>
+       /// Carga todas las salas
+       /// </summary>
+        private  void CargarArchivoPrimeraVez()
+        {
+            try
+            {
+                this.salas = FormMenu.misSalas.Leer(FormMenu.path);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+             
+        }
+        private int CalcularIdSala()
+        {
+            int bufferInt = this.salas.Count;
+
+            return  bufferInt + 1 ;
         }
 
     }

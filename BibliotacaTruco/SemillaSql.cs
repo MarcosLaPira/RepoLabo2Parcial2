@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BibliotacaTruco
 {
-    public  class SemillaSql
+    public class SemillaSql
     {
         #region ATRIBUTOS
         private List<Carta> cartas;
@@ -20,9 +20,9 @@ namespace BibliotacaTruco
         /// </summary>
         public SemillaSql()
         { 
-            cartas = new List<Carta>();
+            this.cartas = new List<Carta>();
             this.sql = new Sql();
-            CrearCartas();           
+            this.CrearCartas();           
         }
         #endregion CONSTRUCTOR
 
@@ -34,56 +34,56 @@ namespace BibliotacaTruco
         private void CrearCartas()
         {
             //espada
-            cartas.Add(new(1, EPalo.espada, EIndiceValor.unoEspada));
-            cartas.Add(new(1, EPalo.oro, EIndiceValor.unoOro));
-            cartas.Add(new(1, EPalo.basto, EIndiceValor.unoBasto));
-            cartas.Add(new(1, EPalo.copa, EIndiceValor.unoCopa));
+            this.cartas.Add(new(1, EPalo.espada, EIndiceValor.unoEspada));
+            this.cartas.Add(new(1, EPalo.oro, EIndiceValor.unoOro));
+            this.cartas.Add(new(1, EPalo.basto, EIndiceValor.unoBasto));
+            this.cartas.Add(new(1, EPalo.copa, EIndiceValor.unoCopa));
 
-            cartas.Add(new(2, EPalo.espada, EIndiceValor.dosEspada));
-            cartas.Add(new(2, EPalo.oro, EIndiceValor.dosOro));
-            cartas.Add(new(2, EPalo.basto, EIndiceValor.dosBasto));
-            cartas.Add(new(2, EPalo.copa, EIndiceValor.dosCopa));
+            this.cartas.Add(new(2, EPalo.espada, EIndiceValor.dosEspada));
+            this.cartas.Add(new(2, EPalo.oro, EIndiceValor.dosOro));
+            this.cartas.Add(new(2, EPalo.basto, EIndiceValor.dosBasto));
+            this.cartas.Add(new(2, EPalo.copa, EIndiceValor.dosCopa));
 
-            cartas.Add(new(3, EPalo.espada, EIndiceValor.tresEspada));
-            cartas.Add(new(3, EPalo.oro, EIndiceValor.tresOro));
-            cartas.Add(new(3, EPalo.basto, EIndiceValor.tresBasto));
-            cartas.Add(new(3, EPalo.copa, EIndiceValor.tresCopa));
+            this.cartas.Add(new(3, EPalo.espada, EIndiceValor.tresEspada));
+            this.cartas.Add(new(3, EPalo.oro, EIndiceValor.tresOro));
+            this.cartas.Add(new(3, EPalo.basto, EIndiceValor.tresBasto));
+            this.cartas.Add(new(3, EPalo.copa, EIndiceValor.tresCopa));
 
            
-            cartas.Add(new(4, EPalo.espada, EIndiceValor.cuatroEspada));
-            cartas.Add(new(4, EPalo.oro, EIndiceValor.cuatroOro));
-            cartas.Add(new(4, EPalo.basto, EIndiceValor.cuatroBasto));
-            cartas.Add(new(4, EPalo.copa, EIndiceValor.cuatroCopa));
+            this.cartas.Add(new(4, EPalo.espada, EIndiceValor.cuatroEspada));
+            this.cartas.Add(new(4, EPalo.oro, EIndiceValor.cuatroOro));
+            this.cartas.Add(new(4, EPalo.basto, EIndiceValor.cuatroBasto));
+            this.cartas.Add(new(4, EPalo.copa, EIndiceValor.cuatroCopa));
 
-            cartas.Add(new(5, EPalo.espada, EIndiceValor.cincoEspada));
-            cartas.Add(new(5, EPalo.oro, EIndiceValor.cincoOro));
-            cartas.Add(new(5, EPalo.basto, EIndiceValor.cincoBasto));
-            cartas.Add(new(5, EPalo.copa, EIndiceValor.cincoCopa));
+            this.cartas.Add(new(5, EPalo.espada, EIndiceValor.cincoEspada));
+            this.cartas.Add(new(5, EPalo.oro, EIndiceValor.cincoOro));
+            this.cartas.Add(new(5, EPalo.basto, EIndiceValor.cincoBasto));
+            this.cartas.Add(new(5, EPalo.copa, EIndiceValor.cincoCopa));
 
-            cartas.Add(new(6, EPalo.espada, EIndiceValor.seisEspada));
-            cartas.Add(new(6, EPalo.oro, EIndiceValor.seisOro));
-            cartas.Add(new(6, EPalo.basto, EIndiceValor.seisBasto));
-            cartas.Add(new(6, EPalo.copa, EIndiceValor.seisCopa));
+            this.cartas.Add(new(6, EPalo.espada, EIndiceValor.seisEspada));
+            this.cartas.Add(new(6, EPalo.oro, EIndiceValor.seisOro));
+            this.cartas.Add(new(6, EPalo.basto, EIndiceValor.seisBasto));
+            this.cartas.Add(new(6, EPalo.copa, EIndiceValor.seisCopa));
 
-            cartas.Add(new(7, EPalo.espada, EIndiceValor.sieteEspada));
-            cartas.Add(new(7, EPalo.oro, EIndiceValor.sieteOro));
-            cartas.Add(new(7, EPalo.basto, EIndiceValor.sieteBasto));
-            cartas.Add(new(7, EPalo.copa, EIndiceValor.sieteCopa));
+            this.cartas.Add(new(7, EPalo.espada, EIndiceValor.sieteEspada));
+            this.cartas.Add(new(7, EPalo.oro, EIndiceValor.sieteOro));
+            this.cartas.Add(new(7, EPalo.basto, EIndiceValor.sieteBasto));
+            this.cartas.Add(new(7, EPalo.copa, EIndiceValor.sieteCopa));
              
-            cartas.Add(new(10, EPalo.espada, EIndiceValor.diezEspada));
-            cartas.Add(new(10, EPalo.oro, EIndiceValor.diezOro));
-            cartas.Add(new(10, EPalo.basto, EIndiceValor.diezBasto));
-            cartas.Add(new(10, EPalo.copa, EIndiceValor.diezCopa));
+            this.cartas.Add(new(10, EPalo.espada, EIndiceValor.diezEspada));
+            this.cartas.Add(new(10, EPalo.oro, EIndiceValor.diezOro));
+            this.cartas.Add(new(10, EPalo.basto, EIndiceValor.diezBasto));
+            this.cartas.Add(new(10, EPalo.copa, EIndiceValor.diezCopa));
 
-            cartas.Add(new(11, EPalo.espada, EIndiceValor.onceEspada));
-            cartas.Add(new(11, EPalo.oro, EIndiceValor.onceOro));
-            cartas.Add(new(11, EPalo.basto, EIndiceValor.onceBasto));
-            cartas.Add(new(11, EPalo.copa, EIndiceValor.onceCopa));
+            this.cartas.Add(new(11, EPalo.espada, EIndiceValor.onceEspada));
+            this.cartas.Add(new(11, EPalo.oro, EIndiceValor.onceOro));
+            this.cartas.Add(new(11, EPalo.basto, EIndiceValor.onceBasto));
+            this.cartas.Add(new(11, EPalo.copa, EIndiceValor.onceCopa));
 
-            cartas.Add(new(12, EPalo.espada, EIndiceValor.doceEspada));
-            cartas.Add(new(12, EPalo.oro, EIndiceValor.doceOro));
-            cartas.Add(new(12, EPalo.basto, EIndiceValor.doceBasto));
-            cartas.Add(new(12, EPalo.copa, EIndiceValor.doceCopa));
+            this.cartas.Add(new(12, EPalo.espada, EIndiceValor.doceEspada));
+            this.cartas.Add(new(12, EPalo.oro, EIndiceValor.doceOro));
+            this.cartas.Add(new(12, EPalo.basto, EIndiceValor.doceBasto));
+            this.cartas.Add(new(12, EPalo.copa, EIndiceValor.doceCopa));
            
         }
       
@@ -96,7 +96,7 @@ namespace BibliotacaTruco
             List<Carta> bufferCartas = new List<Carta>();
             bool flag = false;
 
-            bufferCartas = sql.ObtenerCartas();
+            bufferCartas = this.sql.ObtenerCartas();
 
             if (bufferCartas.Count is <= 0)
             {
@@ -105,9 +105,8 @@ namespace BibliotacaTruco
             }
             if (flag)
             {
-                bufferCartas = sql.ObtenerCartas();
+                bufferCartas = this.sql.ObtenerCartas();
             }
-
             return bufferCartas;
            
         }
@@ -118,9 +117,9 @@ namespace BibliotacaTruco
         {
             try
             {
-                foreach (Carta item in cartas)
+                foreach (Carta item in this.cartas)
                 {
-                    sql.AgregarCarta(item);
+                    this.sql.AgregarCarta(item);
                 }
 
             }

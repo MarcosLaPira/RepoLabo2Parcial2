@@ -21,7 +21,7 @@ namespace BibliotacaTruco
         public Jugador(string nombre)
         {
             this.nombre = nombre;
-            cartas = new List<Carta>();
+            this.cartas = new List<Carta>();
             this.puntaje = 0;
             this.manosActualesGanadas = 0;
         }
@@ -101,7 +101,7 @@ namespace BibliotacaTruco
                     {
                          c1 = this.Cartas[i];
                          c2 = this.Cartas[j];
-                        retorno = CalcularEnvidoDeLaSumaDeDosCartas(c1, c2);
+                        retorno = this.CalcularEnvidoDeLaSumaDeDosCartas(c1, c2);
                         return retorno;
                        
                     }

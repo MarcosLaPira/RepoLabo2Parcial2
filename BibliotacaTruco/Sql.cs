@@ -19,16 +19,16 @@ namespace BibliotacaTruco
         #region METODOS
         static Sql()
         {
-           
+
             // Sql.conectionString = "Server = \\MARCOS ; Database = Cartas ; Trusted_Connection = True; ";// Server = MARCOS nombre del servidor // Database = Clientes nombre de base de datos
-            conectionString = "Server=.;Database=Cartas;User Id=sa;Trusted_Connection=True;TrustServerCertificate=True";
+            Sql.conectionString = "Server=.;Database=Cartas;User Id=sa;Trusted_Connection=True;TrustServerCertificate=True";
             // Sql.conectionString = $"Data Source = .; Initial Catalog = Cartas; Integrated Security = True";
-            conection = new SqlConnection(conectionString);//instancio puente entre programa y base de datos
+            Sql.conection = new SqlConnection(Sql.conectionString);//instancio puente entre programa y base de datos
 
-            comand = new SqlCommand();//instancio el comando encargado de llevar la coneccion
+            Sql.comand = new SqlCommand();//instancio el comando encargado de llevar la coneccion
 
-            comand.Connection = conection;//le paso la coneccion
-            comand.CommandType = CommandType.Text;//indico el tipo de comando, comadno de texto osea que  esto comand.CommandText = "SELECT * FROM Clientes"; va a ser string
+            Sql.comand.Connection = Sql.conection;//le paso la coneccion
+            Sql.comand.CommandType = CommandType.Text;//indico el tipo de comando, comadno de texto osea que  esto comand.CommandText = "SELECT * FROM Clientes"; va a ser string
         }
         /// <summary>
         /// Obtiene cartas de la base de datos
@@ -37,10 +37,10 @@ namespace BibliotacaTruco
         public List<Carta> ObtenerCartas()
         {
             List<Carta> cartas = new List<Carta>();
-           
-            conection.Open();//abro coneccion
 
-            comand.CommandText = "SELECT * FROM TablaCartas";//introduzco LA QERY  a traer
+            Sql.conection.Open();//abro coneccion
+
+            Sql.comand.CommandText = "SELECT * FROM TablaCartas";//introduzco LA QERY  a traer
 
             SqlDataReader reader;//obj donde leo tabla
 
@@ -59,9 +59,9 @@ namespace BibliotacaTruco
                     cartas.Add(cartaLeida);
                 }
             }
-            if (conection.State == ConnectionState.Open)//Verifico si el estado de la coneccion esta abierto, de ser asi lo cierro
+            if (Sql.conection.State == ConnectionState.Open)//Verifico si el estado de la coneccion esta abierto, de ser asi lo cierro
             {
-                conection.Close();//Cierro coneccion
+                Sql.conection.Close();//Cierro coneccion
             }
 
             return cartas;
@@ -75,18 +75,18 @@ namespace BibliotacaTruco
         {
             try
             {
-                conection.Open();
+                Sql.conection.Open();
 
-                comand.CommandText = "INSERT INTO TablaCartas VALUES (@numeroCarta, @palo, @indiceCarta)";//parametrizo con el @, la arroba me indica que es una variable
+                Sql.comand.CommandText = "INSERT INTO TablaCartas VALUES (@numeroCarta, @palo, @indiceCarta)";//parametrizo con el @, la arroba me indica que es una variable
 
                 //@se usa para prevenir inyeccion de sql, es decir donde espero un string no me pueda ingresar un UPDATE y robarme datos
                 //agrego informacion a la variable
-                comand.Parameters.AddWithValue("@numeroCarta", carta.NumeroCarta);
-                comand.Parameters.AddWithValue("@palo", (int)carta.Palo);
-                comand.Parameters.AddWithValue("@indiceCarta", (int)carta.IndiceCarta);
+                Sql.comand.Parameters.AddWithValue("@numeroCarta", carta.NumeroCarta);
+                Sql.comand.Parameters.AddWithValue("@palo", (int)carta.Palo);
+                Sql.comand.Parameters.AddWithValue("@indiceCarta", (int)carta.IndiceCarta);
 
                 //ejecutar la query, ejecuta el comando de texto
-                comand.ExecuteNonQuery();
+                Sql.comand.ExecuteNonQuery();
 
             }
             catch (Exception)
@@ -95,11 +95,11 @@ namespace BibliotacaTruco
             }
             finally
             {
-                comand.Parameters.Clear();//limpio los parametros actuales lineas 77 y 78
+                Sql.comand.Parameters.Clear();//limpio los parametros actuales lineas 77 y 78
 
-                if (conection.State == ConnectionState.Open)//Verifico si el estado de la coneccion esta abierto, de ser asi lo cierro
+                if (Sql.conection.State == ConnectionState.Open)//Verifico si el estado de la coneccion esta abierto, de ser asi lo cierro
                 {
-                    conection.Close();//Cierro coneccion
+                    Sql.conection.Close();//Cierro coneccion
                 }
             }
         }

@@ -15,7 +15,7 @@ namespace ConsolaTruco
 
             Sala s1 = new Sala(jugador1, jugador2, semilla.ObtenerCartasDeLaBase());
 
-            int i = s1.ComenzarPartida();
+           // int i = s1.ComenzarPartida();
             Console.WriteLine(i);
 
             /*

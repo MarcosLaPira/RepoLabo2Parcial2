@@ -1,4 +1,6 @@
-﻿namespace BibliotacaTruco
+﻿using System.Text;
+
+namespace BibliotacaTruco
 {
     public class Carta
     {
@@ -37,6 +39,30 @@
         /// </summary>
         public EIndiceValor IndiceCarta { get => this.indiceCarta; }
         #endregion PROPIEDADES
+
+        /// <summary>
+        /// sobrecarga tostring de carta
+        /// </summary>
+        /// <returns> retorna un string con los datos de la carta</returns>
+        public override string ToString()
+        {
+            return MostrarCarta();
+        }
+
+        /// <summary>
+        /// calcula los datos de la carta
+        /// </summary>
+        /// <returns>retorna string con los datos de la carta</returns>
+        private string MostrarCarta()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            sb.Append($"{this.NumeroCarta.ToString()}");
+            sb.Append($" de {this.palo.ToString()}");
+
+            return sb.ToString();
+        }
+
 
 
     }

@@ -33,6 +33,7 @@
             this.lblEstadoPartida = new System.Windows.Forms.Label();
             this.lblGanadorSala = new System.Windows.Forms.Label();
             this.btnOk = new System.Windows.Forms.Button();
+            this.rtbInforme = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // lblIdSala
@@ -57,7 +58,7 @@
             // 
             this.lblEstadoPartida.AutoSize = true;
             this.lblEstadoPartida.Font = new System.Drawing.Font("Showcard Gothic", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblEstadoPartida.Location = new System.Drawing.Point(274, 29);
+            this.lblEstadoPartida.Location = new System.Drawing.Point(255, 30);
             this.lblEstadoPartida.Name = "lblEstadoPartida";
             this.lblEstadoPartida.Size = new System.Drawing.Size(290, 35);
             this.lblEstadoPartida.TabIndex = 2;
@@ -74,19 +75,29 @@
             // 
             // btnOk
             // 
-            this.btnOk.Location = new System.Drawing.Point(606, 361);
+            this.btnOk.Location = new System.Drawing.Point(690, 402);
             this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(136, 58);
+            this.btnOk.Size = new System.Drawing.Size(98, 36);
             this.btnOk.TabIndex = 4;
             this.btnOk.Text = "Ok";
             this.btnOk.UseVisualStyleBackColor = true;
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
+            // 
+            // rtbInforme
+            // 
+            this.rtbInforme.Location = new System.Drawing.Point(207, 82);
+            this.rtbInforme.Name = "rtbInforme";
+            this.rtbInforme.Size = new System.Drawing.Size(410, 311);
+            this.rtbInforme.TabIndex = 5;
+            this.rtbInforme.Text = "";
+            this.rtbInforme.TextChanged += new System.EventHandler(this.rtbInforme_TextChanged);
             // 
             // FormSala
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.rtbInforme);
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.lblGanadorSala);
             this.Controls.Add(this.lblEstadoPartida);
@@ -107,5 +118,6 @@
         private Label lblEstadoPartida;
         private Label lblGanadorSala;
         private Button btnOk;
+        private RichTextBox rtbInforme;
     }
 }

@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace BibliotacaTruco
 {
-
     public abstract class Archivo
     {
         protected abstract string Extencion { get; }
@@ -19,13 +18,13 @@ namespace BibliotacaTruco
         /// <exception cref="ArchivoIncorrectoExcepcion"></exception>
         public bool ValidarExtencion(string ruta)
         {
-            if (Path.GetExtension(ruta) == Extencion)//devuelve extencion del archvio ej: .txt
+            if (Path.GetExtension(ruta) == this.Extencion)//devuelve extencion del archvio ej: .txt
             {
                 return true;
             }
             else
             {
-                throw new ArchivoIncorrectoExcepcion($"El archivo no tiene la extencion {Extencion}");
+                throw new ArchivoIncorrectoExcepcion($"El archivo no tiene la extencion {this.Extencion}");
             }
         }
 

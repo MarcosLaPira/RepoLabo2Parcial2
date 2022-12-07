@@ -31,10 +31,11 @@
             this.lblCantDePartidasJugadas = new System.Windows.Forms.Label();
             this.lblVictoriasDejugador1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.lblVictoriasDeJugador2 = new System.Windows.Forms.Label();
             this.ColumnaIdPartida = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnaGanador = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblVictoriasDeJugador2 = new System.Windows.Forms.Label();
             this.btnVolver = new System.Windows.Forms.Button();
+            this.lblPartidasEmpatadas = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -69,15 +70,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(300, 373);
             this.dataGridView1.TabIndex = 2;
             // 
-            // lblVictoriasDeJugador2
-            // 
-            this.lblVictoriasDeJugador2.AutoSize = true;
-            this.lblVictoriasDeJugador2.Location = new System.Drawing.Point(44, 235);
-            this.lblVictoriasDeJugador2.Name = "lblVictoriasDeJugador2";
-            this.lblVictoriasDeJugador2.Size = new System.Drawing.Size(158, 20);
-            this.lblVictoriasDeJugador2.TabIndex = 3;
-            this.lblVictoriasDeJugador2.Text = "Victorias de jugador 2:";
-            // 
             // ColumnaIdPartida
             // 
             this.ColumnaIdPartida.HeaderText = "Numero sala";
@@ -94,6 +86,15 @@
             this.ColumnaGanador.ReadOnly = true;
             this.ColumnaGanador.Width = 125;
             // 
+            // lblVictoriasDeJugador2
+            // 
+            this.lblVictoriasDeJugador2.AutoSize = true;
+            this.lblVictoriasDeJugador2.Location = new System.Drawing.Point(44, 235);
+            this.lblVictoriasDeJugador2.Name = "lblVictoriasDeJugador2";
+            this.lblVictoriasDeJugador2.Size = new System.Drawing.Size(158, 20);
+            this.lblVictoriasDeJugador2.TabIndex = 3;
+            this.lblVictoriasDeJugador2.Text = "Victorias de jugador 2:";
+            // 
             // btnVolver
             // 
             this.btnVolver.Location = new System.Drawing.Point(676, 409);
@@ -104,11 +105,21 @@
             this.btnVolver.UseVisualStyleBackColor = true;
             this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
             // 
+            // lblPartidasEmpatadas
+            // 
+            this.lblPartidasEmpatadas.AutoSize = true;
+            this.lblPartidasEmpatadas.Location = new System.Drawing.Point(54, 311);
+            this.lblPartidasEmpatadas.Name = "lblPartidasEmpatadas";
+            this.lblPartidasEmpatadas.Size = new System.Drawing.Size(154, 20);
+            this.lblPartidasEmpatadas.TabIndex = 5;
+            this.lblPartidasEmpatadas.Text = "Cantidad de empates:";
+            // 
             // FormHistorial
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lblPartidasEmpatadas);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.lblVictoriasDeJugador2);
             this.Controls.Add(this.dataGridView1);
@@ -132,5 +143,6 @@
         private DataGridViewTextBoxColumn ColumnaIdPartida;
         private DataGridViewTextBoxColumn ColumnaGanador;
         private Button btnVolver;
+        private Label lblPartidasEmpatadas;
     }
 }

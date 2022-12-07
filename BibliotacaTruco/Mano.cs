@@ -13,22 +13,22 @@ namespace BibliotacaTruco
         /// <summary>
         /// compara la carta del jugador 1 contra la del jugador 2
         /// </summary>
-        /// <param name="cartaJugador1"></param>
-        /// <param name="cartaJugador2"></param>
+        /// <param name="cartaMano"></param>
+        /// <param name="cartaNoMano"></param>
         /// <returns> retorna 1 si el ganador es el jugador 1 , -1 si el ganador es el jugador 2 y 0 si hay empate</returns>
         /// <exception cref="NotImplementedException"></exception>
-        public static int GanadorDeTirada(Carta cartaJugador1, Carta cartaJugador2)
+        public static int GanadorDeTirada(Carta cartaMano, Carta cartaNoMano)
         {
             int retorno=0;
-            if (cartaJugador1 is not null && cartaJugador2 is not null)
+            if (cartaMano is not null && cartaNoMano is not null)
             {
-                if (cartaJugador1.IndiceCarta < cartaJugador2.IndiceCarta)
+                if (cartaMano.IndiceCarta < cartaNoMano.IndiceCarta)
                 {
                     retorno = 1;
                 }
                 else
                 {
-                    if (cartaJugador1.IndiceCarta > cartaJugador2.IndiceCarta)
+                    if (cartaMano.IndiceCarta > cartaNoMano.IndiceCarta)
                     {
                         retorno = -1;
                     }
